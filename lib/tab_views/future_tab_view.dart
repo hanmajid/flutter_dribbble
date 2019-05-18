@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dribbble/tab_views/content_list_tab_view.dart';
 import 'package:flutter_dribbble/tab_views/no_connection_tab_view.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 
