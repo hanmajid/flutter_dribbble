@@ -71,7 +71,9 @@ class MyDrawer extends StatelessWidget {
               icon: Icons.settings,
               title: 'Settings',
               isActive: false,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/settings');
+              },
             ),
             DrawerListTile(
               icon: Icons.info,
@@ -93,12 +95,11 @@ _launchUrl() async {
   const subject = '[DRIBBBBLE ANDROID] Bug Report';
   const body = 'Thanks for filling a bug!';
   const url = 'mailto:support@dribbbble.com?subject=$subject&body=$body';
-  if(await canLaunch(url)) {
+  if (await canLaunch(url)) {
     await launch(url);
   } else {
     print('Couldn\'t launch URL');
   }
-
 }
 
 class DrawerListTile extends StatelessWidget {
