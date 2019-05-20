@@ -43,4 +43,5 @@ ThemeData primaryThemeData = ThemeData(
       ),
     ),
   ),
+  toggleableActiveColor: pink,
 );

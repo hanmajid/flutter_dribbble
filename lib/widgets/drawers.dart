@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dribbble/helpers/url_helpers.dart';
 import 'package:flutter_dribbble/values/colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -80,8 +80,7 @@ class MyDrawer extends StatelessWidget {
               title: 'Report a bug',
               isActive: false,
               onTap: () {
-                print('ontap');
-                _launchUrl();
+                UrlHelpers.reportABug();
               },
             ),
           ],
@@ -91,16 +90,7 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
-_launchUrl() async {
-  const subject = '[DRIBBBBLE ANDROID] Bug Report';
-  const body = 'Thanks for filling a bug!';
-  const url = 'mailto:support@dribbbble.com?subject=$subject&body=$body';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    print('Couldn\'t launch URL');
-  }
-}
+
 
 class DrawerListTile extends StatelessWidget {
   final IconData icon;
