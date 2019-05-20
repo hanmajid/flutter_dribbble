@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dribbble/data/user_data.dart';
 import 'package:flutter_dribbble/helpers/url_helpers.dart';
-import 'package:flutter_dribbble/values/colors.dart';
+import 'package:flutter_dribbble/widgets/settings.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserData>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -27,9 +30,11 @@ class SettingsPage extends StatelessWidget {
                 SettingsSwitchListTile(
                   title: 'Use night mode',
                   subtitle: 'Get that whiteness out of my sight',
-                  value: false,
+                  value: userData.isNightMode,
                   isThreeLine: false,
-                  onChanged: (bool value) {},
+                  onChanged: (bool value) {
+                    userData.isNightMode = value;
+                  },
                 )
               ],
             ),
@@ -40,17 +45,21 @@ class SettingsPage extends StatelessWidget {
                   title: 'Data-saving mode',
                   subtitle:
                       'Images will be loaded at the best resolution available in lists',
-                  value: false,
+                  value: userData.dataSavingMode,
                   isThreeLine: true,
-                  onChanged: (bool value) {},
+                  onChanged: (bool value) {
+                    userData.dataSavingMode = value;
+                  },
                 ),
                 SettingsDivider(),
                 SettingsSwitchListTile(
                   title: 'GIFs autoplay',
                   subtitle: 'GIFs will only be played in details screens',
-                  value: false,
+                  value: userData.gifsAutoplay,
                   isThreeLine: true,
-                  onChanged: (bool value) {},
+                  onChanged: (bool value) {
+                    userData.gifsAutoplay = value;
+                  },
                 ),
                 SettingsDivider(),
                 SettingsListTile(
@@ -67,17 +76,21 @@ class SettingsPage extends StatelessWidget {
                   title: 'Prevent accidental exit',
                   subtitle:
                       'You will have to hit the back key twice to exit the app from the home screen',
-                  value: true,
+                  value: userData.preventAccidentalExit,
                   isThreeLine: true,
-                  onChanged: (bool value) {},
+                  onChanged: (bool value) {
+                    userData.preventAccidentalExit = value;
+                  },
                 ),
                 SettingsDivider(),
                 SettingsSwitchListTile(
                   title: 'Open web pages in the app',
                   subtitle: 'Links will open in Dribbbble',
-                  value: true,
+                  value: userData.openWebInApp,
                   isThreeLine: false,
-                  onChanged: (bool value) {},
+                  onChanged: (bool value) {
+                    userData.openWebInApp = value;
+                  },
                 ),
                 SettingsDivider(),
                 SettingsListTile(
@@ -133,134 +146,6 @@ class SettingsPage extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SettingsCard extends StatelessWidget {
-  final List<Widget> children;
-  final String title;
-
-  const SettingsCard({Key key, this.title, this.children}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> finalChildren = [];
-    finalChildren.add(
-      Container(
-        padding: const EdgeInsets.only(
-            right: 16.0, left: 16.0, bottom: 16.0, top: 24.0),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: pink,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),
-        ),
-      ),
-    );
-    finalChildren.addAll(children);
-    return Card(
-      margin: const EdgeInsets.only(top: 24.0),
-      shape: RoundedRectangleBorder(),
-      elevation: 1.0,
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: finalChildren,
-        ),
-      ),
-    );
-  }
-}
-
-class SettingsSwitchListTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final bool value;
-  final onChanged;
-  final bool isThreeLine;
-
-  const SettingsSwitchListTile(
-      {Key key,
-      this.title,
-      this.subtitle,
-      this.value,
-      this.onChanged,
-      this.isThreeLine})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SwitchListTile(
-      isThreeLine: isThreeLine,
-      title: Text(
-        title,
-        style: TextStyle(
-          color: mediumDarkGrey,
-        ),
-      ),
-      subtitle: Text(
-        subtitle,
-        style: TextStyle(
-          color: lighterGrey,
-        ),
-      ),
-      value: value,
-      onChanged: onChanged,
-    );
-  }
-}
-
-class SettingsListTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData trailing;
-  final onTap;
-
-  const SettingsListTile(
-      {Key key, this.title, this.subtitle, this.onTap, this.trailing})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        title,
-        style: TextStyle(
-          color: mediumDarkGrey,
-        ),
-      ),
-      subtitle: subtitle != null
-          ? Text(
-              subtitle,
-              style: TextStyle(
-                color: lighterGrey,
-              ),
-            )
-          : null,
-      trailing: trailing != null
-          ? Icon(
-              trailing,
-              color: lighterGrey,
-            )
-          : null,
-      onTap: onTap,
-    );
-  }
-}
-
-class SettingsDivider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Divider(
-        height: 0.0,
-        color: lightestGrey,
       ),
     );
   }

@@ -26,6 +26,7 @@ dependencies:
   after_layout: ^1.0.7
   url_launcher: ^5.0.2
   share: ^0.6.1+1
+  provider: ^2.0.1
 
 dev_dependencies:
   flutter_test:
