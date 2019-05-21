@@ -10,16 +10,25 @@ class ContentListTabView extends StatefulWidget {
   final onRefresh;
   final listKey;
   final onWidgetLoad;
+  final ScrollController scrollController;
 
   const ContentListTabView(
-      {Key key, this.contents, this.onRefresh, this.listKey, this.onWidgetLoad})
+      {Key key,
+      this.contents,
+      this.onRefresh,
+      this.listKey,
+      this.onWidgetLoad,
+      this.scrollController})
       : super(key: key);
 
   @override
   _ContentListTabViewState createState() => _ContentListTabViewState();
 }
 
-class _ContentListTabViewState extends State<ContentListTabView> with AfterLayoutMixin<ContentListTabView> {
+class _ContentListTabViewState extends State<ContentListTabView>
+    with
+        AfterLayoutMixin<ContentListTabView>,
+        AutomaticKeepAliveClientMixin<ContentListTabView> {
   @override
   Widget build(BuildContext context) {
     List<dynamic> data = [];
@@ -29,6 +38,7 @@ class _ContentListTabViewState extends State<ContentListTabView> with AfterLayou
       onRefresh: widget.onRefresh,
       child: AnimatedList(
         key: widget.listKey,
+        // controller: widget.scrollController,
         initialItemCount: data.length,
         itemBuilder: (BuildContext context, int index, Animation animation) {
           if (index == ContentListTabViewItems['viewDropdown']) {
@@ -57,4 +67,7 @@ class _ContentListTabViewState extends State<ContentListTabView> with AfterLayou
   void afterFirstLayout(BuildContext context) {
     widget.onWidgetLoad();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

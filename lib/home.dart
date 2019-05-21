@@ -32,11 +32,24 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   List<Content> tempRecentContents = [];
   List<Content> recentContents = [];
 
+  ScrollController _popularController;
+  ScrollController _recentController;
+
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
     _scrollViewController = new ScrollController();
-    _tabController = new TabController(vsync: this, length: 2);
+    _popularController = new ScrollController();
+    _recentController = new ScrollController();
+    _tabController = new TabController(vsync: this, length: 2)
+      ..addListener(() {
+        print(_tabController.index);
+        setState(() {
+          _currentIndex = _tabController.index;
+        });
+      });
 
     _refreshPopular();
     _refreshRecent();
@@ -45,6 +58,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   void dispose() {
     _scrollViewController.dispose();
+    _popularController.dispose();
+    _recentController.dispose();
     _tabController.dispose();
     super.dispose();
   }
@@ -103,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       key: _scaffoldKey,
       body: NestedScrollView(
         controller: _scrollViewController,
+            // _currentIndex == 0 ? _popularController : _recentController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             MyAppBar(
@@ -125,11 +141,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 //   _popularListKey.currentState.insertItem(index);
                 //   index++;
                 // }
-                return ContentListTabView(
+                return new ContentListTabView(
                   listKey: _popularListKey,
                   contents: popularContents,
                   onRefresh: _refreshPopular,
                   onWidgetLoad: _onLoadPopular,
+                  // scrollController: _popularController,
                 );
               },
             ),
@@ -144,11 +161,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 //   _recentListKey.currentState.insertItem(index);
                 //   index++;
                 // }
-                return ContentListTabView(
+                return new ContentListTabView(
                   listKey: _recentListKey,
                   contents: data,
                   onRefresh: _refreshRecent,
                   onWidgetLoad: _onLoadRecent,
+                  // scrollController: _recentController,
                 );
               },
             ),
