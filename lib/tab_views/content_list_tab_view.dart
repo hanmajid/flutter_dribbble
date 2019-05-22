@@ -31,6 +31,7 @@ class _ContentListTabViewState extends State<ContentListTabView>
         AutomaticKeepAliveClientMixin<ContentListTabView> {
   @override
   Widget build(BuildContext context) {
+    // super.build(context);
     List<dynamic> data = [];
     data.add('viewDropdown');
     data.addAll(widget.contents);

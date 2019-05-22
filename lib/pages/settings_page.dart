@@ -105,7 +105,9 @@ class SettingsPage extends StatelessWidget {
                 SettingsListTile(
                   title: 'About',
                   trailing: Icons.chevron_right,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/about');
+                  },
                 ),
                 SettingsDivider(),
                 SettingsListTile(
@@ -143,7 +145,7 @@ class SettingsPage extends StatelessWidget {
             ),
             SizedBox(
               height: 24.0,
-            )
+            ),
           ],
         ),
       ),

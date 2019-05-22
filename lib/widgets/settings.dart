@@ -10,27 +10,29 @@ class SettingsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> finalChildren = [];
-    finalChildren.add(
-      Container(
-        padding: const EdgeInsets.only(
-            right: 16.0, left: 16.0, bottom: 16.0, top: 24.0),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: pink,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
+    if (title != null) {
+      finalChildren.add(
+        Container(
+          padding: const EdgeInsets.only(
+              right: 16.0, left: 16.0, bottom: 16.0, top: 16.0),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: pink,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
     finalChildren.addAll(children);
     return Card(
       margin: const EdgeInsets.only(top: 24.0),
       shape: RoundedRectangleBorder(),
       elevation: 1.0,
       child: Container(
-        padding: const EdgeInsets.only(bottom: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: finalChildren,
