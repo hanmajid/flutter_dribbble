@@ -3,6 +3,7 @@ import 'package:flutter_dribbble/data/user_data.dart';
 import 'package:flutter_dribbble/home.dart';
 import 'package:flutter_dribbble/pages/about_page.dart';
 import 'package:flutter_dribbble/pages/settings_page.dart';
+import 'package:flutter_dribbble/pages/whats_new_page.dart';
 import 'package:flutter_dribbble/routes/page_routes.dart';
 import 'package:flutter_dribbble/themes/themes.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
                 return SlideRightRoute(widget: SettingsPage());
               case '/about':
                 return SlideRightRoute(widget: AboutPage());
+              case '/whats_new':
+                return SlideUpRoute(widget: WhatsNewPage());
             }
           },
         );

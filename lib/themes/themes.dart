@@ -44,4 +44,8 @@ ThemeData primaryThemeData = ThemeData(
     ),
   ),
   toggleableActiveColor: pink,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: pink,
+    
+  )
 );

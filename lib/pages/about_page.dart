@@ -45,7 +45,7 @@ class AboutPage extends StatelessWidget {
                   title: 'What\'s new?',
                   trailing: Icons.chevron_right,
                   onTap: () {
-                    
+                    Navigator.of(context).pushNamed('/whats_new');
                   },
                 ),
                 SettingsDivider(),
