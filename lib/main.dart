@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dribbble/data/user_data.dart';
 import 'package:flutter_dribbble/home.dart';
+import 'package:flutter_dribbble/models/content.dart';
 import 'package:flutter_dribbble/pages/about_page.dart';
+import 'package:flutter_dribbble/pages/content_detail_page.dart';
 import 'package:flutter_dribbble/pages/settings_page.dart';
 import 'package:flutter_dribbble/pages/whats_new_page.dart';
 import 'package:flutter_dribbble/routes/page_routes.dart';
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
                 return MaterialPageRoute(builder: (BuildContext context) {
                   return MyHomePage();
                 });
+              case '/content':
+                Content content = settings.arguments as Content;
+                return SlideRightRoute(widget: ContentDetailPage(content: content));
               case '/settings':
                 return SlideRightRoute(widget: SettingsPage());
               case '/about':

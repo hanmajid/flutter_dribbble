@@ -112,6 +112,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return _recentContents;
   }
 
+  void _onItemTap(Content content) {
+    Navigator.of(context).pushNamed('/content', arguments: content);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   contents: popularContents,
                   onRefresh: _refreshPopular,
                   onWidgetLoad: _onLoadPopular,
+                  onItemTap: _onItemTap,
                   // scrollController: _popularController,
                 );
               },
@@ -166,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   contents: data,
                   onRefresh: _refreshRecent,
                   onWidgetLoad: _onLoadRecent,
+                  onItemTap: _onItemTap,
                   // scrollController: _recentController,
                 );
               },

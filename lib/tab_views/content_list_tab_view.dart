@@ -11,15 +11,17 @@ class ContentListTabView extends StatefulWidget {
   final listKey;
   final onWidgetLoad;
   final ScrollController scrollController;
+  final onItemTap;
 
-  const ContentListTabView(
-      {Key key,
-      this.contents,
-      this.onRefresh,
-      this.listKey,
-      this.onWidgetLoad,
-      this.scrollController})
-      : super(key: key);
+  const ContentListTabView({
+    Key key,
+    this.contents,
+    this.onRefresh,
+    this.listKey,
+    this.onWidgetLoad,
+    this.scrollController,
+    this.onItemTap,
+  }) : super(key: key);
 
   @override
   _ContentListTabViewState createState() => _ContentListTabViewState();
@@ -57,6 +59,9 @@ class _ContentListTabViewState extends State<ContentListTabView>
             scale: animation,
             child: ContentItem(
               content: data[index],
+              onTap: () {
+                widget.onItemTap(data[index]);
+              },
             ),
           );
         },
