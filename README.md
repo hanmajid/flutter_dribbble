@@ -14,3 +14,6 @@ I made this for my study/exercise on Flutter. I only make the client-side app, t
 2. List contents, Sliver AppBar, Swipe to refresh, & Insert Item Animation
 <img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image2.gif" height="300" alt="List contents, Sliver AppBar, Swipe to refresh, & Insert Item Animation"/>
 
+3. Change card elevation on tap
+<img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image3.gif" height="300" alt="Change card elevation on tap"/>
+
