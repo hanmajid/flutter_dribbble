@@ -74,30 +74,34 @@ class ContentItemButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-          horizontal: 12.0,
-        ),
-        child: Row(
-          children: <Widget>[
-            Icon(
-              icon,
-              color: lighterGrey,
-            ),
-            SizedBox(
-              width: 4.0,
-            ),
-            Text(
-              text,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+    return Material(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 12.0,
+          ),
+          child: Row(
+            children: <Widget>[
+              Icon(
+                icon,
                 color: lighterGrey,
               ),
-            )
-          ],
+              SizedBox(
+                width: 4.0,
+              ),
+              text == null
+                  ? Container()
+                  : Text(
+                      text,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: lighterGrey,
+                      ),
+                    )
+            ],
+          ),
         ),
       ),
     );
