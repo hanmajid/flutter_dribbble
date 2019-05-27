@@ -7,7 +7,8 @@ import 'package:flutter_dribbble/pages/content_detail_page.dart';
 import 'package:flutter_dribbble/pages/settings_page.dart';
 import 'package:flutter_dribbble/pages/whats_new_page.dart';
 import 'package:flutter_dribbble/routes/page_routes.dart';
-import 'package:flutter_dribbble/themes/themes.dart';
+import 'package:flutter_dribbble/themes/dark_theme.dart';
+import 'package:flutter_dribbble/themes/light_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          theme: !userData.isNightMode ? primaryThemeData : null,
+          theme: !userData.isNightMode ? lightThemeData : darkThemeData,
           initialRoute: '/',
           onGenerateRoute: (RouteSettings settings) {
             switch (settings.name) {

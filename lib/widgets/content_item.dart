@@ -75,6 +75,7 @@ class ContentItemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -126,7 +127,6 @@ class AnimatedContentItem extends AnimatedWidget {
       onTap: onTap,
       child: Card(
         elevation: animation.value,
-        color: Colors.white,
         shape: RoundedRectangleBorder(),
         margin: const EdgeInsets.only(
           bottom: 24.0,
@@ -160,11 +160,11 @@ class AnimatedContentItem extends AnimatedWidget {
                         children: <Widget>[
                           Text(
                             content.title,
-                            style: Theme.of(context).primaryTextTheme.subhead,
+                            style: Theme.of(context).textTheme.subhead,
                           ),
                           Text(
                             '${content.artistName}, ${content.createdAt.toString()}',
-                            style: Theme.of(context).primaryTextTheme.caption,
+                            style: Theme.of(context).textTheme.caption,
                           ),
                         ],
                       ),

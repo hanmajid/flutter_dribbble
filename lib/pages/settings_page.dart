@@ -35,6 +35,7 @@ class SettingsPage extends StatelessWidget {
                   onChanged: (bool value) {
                     userData.isNightMode = value;
                   },
+                  isDarkMode: userData.isNightMode,
                 )
               ],
             ),
@@ -50,6 +51,7 @@ class SettingsPage extends StatelessWidget {
                   onChanged: (bool value) {
                     userData.dataSavingMode = value;
                   },
+                  isDarkMode: userData.isNightMode,
                 ),
                 SettingsDivider(),
                 SettingsSwitchListTile(
@@ -60,6 +62,7 @@ class SettingsPage extends StatelessWidget {
                   onChanged: (bool value) {
                     userData.gifsAutoplay = value;
                   },
+                  isDarkMode: userData.isNightMode,
                 ),
                 SettingsDivider(),
                 SettingsListTile(
@@ -81,6 +84,7 @@ class SettingsPage extends StatelessWidget {
                   onChanged: (bool value) {
                     userData.preventAccidentalExit = value;
                   },
+                  isDarkMode: userData.isNightMode,
                 ),
                 SettingsDivider(),
                 SettingsSwitchListTile(
@@ -91,6 +95,7 @@ class SettingsPage extends StatelessWidget {
                   onChanged: (bool value) {
                     userData.openWebInApp = value;
                   },
+                  isDarkMode: userData.isNightMode,
                 ),
                 SettingsDivider(),
                 SettingsListTile(

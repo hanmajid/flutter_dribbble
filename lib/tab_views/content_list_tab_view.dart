@@ -38,6 +38,8 @@ class _ContentListTabViewState extends State<ContentListTabView>
     data.add('viewDropdown');
     data.addAll(widget.contents);
     return RefreshIndicator(
+      backgroundColor: Theme.of(context).primaryColor,
+      color: Colors.white,
       onRefresh: widget.onRefresh,
       child: AnimatedList(
         key: widget.listKey,

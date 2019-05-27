@@ -48,31 +48,29 @@ class SettingsSwitchListTile extends StatelessWidget {
   final bool value;
   final onChanged;
   final bool isThreeLine;
+  final bool isDarkMode;
 
-  const SettingsSwitchListTile(
-      {Key key,
-      this.title,
-      this.subtitle,
-      this.value,
-      this.onChanged,
-      this.isThreeLine})
-      : super(key: key);
+  const SettingsSwitchListTile({
+    Key key,
+    this.title,
+    this.subtitle,
+    this.value,
+    this.onChanged,
+    this.isThreeLine,
+    @required this.isDarkMode,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
+      inactiveThumbColor: isDarkMode ? Color(0xffb9b9b9) : Color(0xffececec),
+      inactiveTrackColor: isDarkMode ? Color(0xff6d6d6d) : Color(0xffb2b2b2),
       isThreeLine: isThreeLine,
       title: Text(
         title,
-        style: TextStyle(
-          color: mediumDarkGrey,
-        ),
       ),
       subtitle: Text(
         subtitle,
-        style: TextStyle(
-          color: lighterGrey,
-        ),
       ),
       value: value,
       onChanged: onChanged,
@@ -95,16 +93,10 @@ class SettingsListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: TextStyle(
-          color: mediumDarkGrey,
-        ),
       ),
       subtitle: subtitle != null
           ? Text(
               subtitle,
-              style: TextStyle(
-                color: lighterGrey,
-              ),
             )
           : null,
       trailing: trailing != null
@@ -125,7 +117,6 @@ class SettingsDivider extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Divider(
         height: 0.0,
-        color: lightestGrey,
       ),
     );
   }

@@ -53,7 +53,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(),
+            Divider(
+              color: lightGrey,
+            ),
             DrawerListTile(
               icon: Icons.home,
               title: 'Home',
@@ -66,7 +68,9 @@ class MyDrawer extends StatelessWidget {
               isActive: false,
               onTap: () {},
             ),
-            Divider(),
+            Divider(
+              color: lightGrey,
+            ),
             DrawerListTile(
               icon: Icons.settings,
               title: 'Settings',
@@ -90,8 +94,6 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
-
-
 class DrawerListTile extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -107,15 +109,15 @@ class DrawerListTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: isActive
-            ? Theme.of(context).primaryColor
-            : Theme.of(context).iconTheme.color,
+        color: isActive ? Theme.of(context).primaryColor : Theme.of(context).iconTheme.color,
       ),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.subhead.copyWith(
-              color: isActive ? Theme.of(context).primaryColor : null,
-            ),
+        style: isActive
+            ? Theme.of(context).textTheme.subhead.copyWith(
+                  color: Theme.of(context).primaryColor,
+                )
+            : Theme.of(context).primaryTextTheme.subhead,
       ),
       onTap: onTap,
     );

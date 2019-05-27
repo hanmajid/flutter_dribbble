@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 
-ThemeData primaryThemeData = ThemeData(
+ThemeData lightThemeData = ThemeData(
   scaffoldBackgroundColor: lightestGrey,
+  cardTheme: CardTheme(
+    color: Colors.white,
+  ),
+  primaryIconTheme: IconThemeData(
+    color: Color(0xff9c9c9c),
+  ),
+  iconTheme: IconThemeData(
+    color: grey,
+  ),
   primaryColor: pink,
-  dividerColor: lightGrey,
+  dividerColor: lightestGrey,
   textTheme: TextTheme(
     title: TextStyle(
       color: Colors.white,
@@ -14,21 +23,21 @@ ThemeData primaryThemeData = ThemeData(
       color: grey,
     ),
     subhead: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-  primaryTextTheme: TextTheme(
-    subhead: TextStyle(
-      color: Colors.black,
+      color: mediumDarkGrey,
       fontWeight: FontWeight.bold,
     ),
     caption: TextStyle(
       color: lighterGrey,
     ),
   ),
-  iconTheme: IconThemeData(
-    color: grey,
+  primaryTextTheme: TextTheme(
+    subhead: TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+    ),
+    caption: TextStyle(
+      color: lighterGrey,
+    ),
   ),
   appBarTheme: AppBarTheme(
     color: mediumDarkGrey,
@@ -46,6 +55,5 @@ ThemeData primaryThemeData = ThemeData(
   toggleableActiveColor: pink,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: pink,
-    
-  )
+  ),
 );
