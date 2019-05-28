@@ -17,3 +17,6 @@ I made this for my study/exercise on Flutter. I only make the client-side app, t
 3. Change card elevation on tap
 <img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image3.gif" height="300" alt="Change card elevation on tap"/>
 
+4. Change to night mode via Provider
+<img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image4.gif" height="300" alt="Change to night mode via Provider"/>
+
