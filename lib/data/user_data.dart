@@ -7,12 +7,15 @@ class UserData extends ChangeNotifier {
   bool _preventAccidentalExit;
   bool _openWebInApp;
 
+  bool _pressedBackOnce;
+
   UserData() {
     _isNightMode = false;
     _dataSavingMode = false;
     _gifsAutoplay = false;
     _preventAccidentalExit = true;
     _openWebInApp = true;
+    _pressedBackOnce = false;
   }
 
   bool get isNightMode => _isNightMode;
@@ -20,6 +23,7 @@ class UserData extends ChangeNotifier {
   bool get gifsAutoplay => _gifsAutoplay;
   bool get preventAccidentalExit => _preventAccidentalExit;
   bool get openWebInApp => _openWebInApp;
+  bool get pressedBackOnce => _pressedBackOnce;
 
   set isNightMode(bool newValue) {
     _isNightMode = newValue;
@@ -43,6 +47,11 @@ class UserData extends ChangeNotifier {
 
   set openWebInApp(bool newValue) {
     _openWebInApp = newValue;
+    notifyListeners();
+  }
+
+  set pressedBackOnce(bool newValue) {
+    _pressedBackOnce = newValue;
     notifyListeners();
   }
 }

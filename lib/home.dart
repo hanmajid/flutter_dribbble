@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dribbble/data/user_data.dart';
 import 'package:flutter_dribbble/models/content.dart';
 import 'package:flutter_dribbble/services/content_services.dart';
 import 'package:flutter_dribbble/tab_views/content_list_tab_view.dart';
 import 'package:flutter_dribbble/tab_views/future_tab_view.dart';
 import 'package:flutter_dribbble/widgets/appbar.dart';
 import 'package:flutter_dribbble/widgets/drawers.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -118,68 +120,93 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: NestedScrollView(
-        controller: _scrollViewController,
-            // _currentIndex == 0 ? _popularController : _recentController,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            MyAppBar(
-              forceElevated: innerBoxIsScrolled,
-              tabController: _tabController,
+    UserData userData = Provider.of<UserData>(context);
+    return WillPopScope(
+      onWillPop: () async {
+        if (userData.preventAccidentalExit) {
+          if(userData.pressedBackOnce) {
+            return true;
+          }
+          userData.pressedBackOnce = true;
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onVerticalDragStart: (_) {},
+                child: Text('Press close again to close Dribbbble'),
+              ),
             ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: <Widget>[
-            FutureTabView<List<Content>>(
-              future: _popularContents,
-              onTapRefresh: _refreshPopular,
-              buildList: (List<Content> data) {
-                // popularContents = [];
-                // int index = 0;
-                // for (Content content in data) {
-                //   popularContents.add(content);
-                //   _popularListKey.currentState.insertItem(index);
-                //   index++;
-                // }
-                return new ContentListTabView(
-                  listKey: _popularListKey,
-                  contents: popularContents,
-                  onRefresh: _refreshPopular,
-                  onWidgetLoad: _onLoadPopular,
-                  onItemTap: _onItemTap,
-                  // scrollController: _popularController,
-                );
-              },
-            ),
-            FutureTabView<List<Content>>(
-              future: _recentContents,
-              onTapRefresh: _refreshRecent,
-              buildList: (List<Content> data) {
-                // recentContents = [];
-                // int index = 0;
-                // for (Content content in data) {
-                //   recentContents.add(content);
-                //   _recentListKey.currentState.insertItem(index);
-                //   index++;
-                // }
-                return new ContentListTabView(
-                  listKey: _recentListKey,
-                  contents: data,
-                  onRefresh: _refreshRecent,
-                  onWidgetLoad: _onLoadRecent,
-                  onItemTap: _onItemTap,
-                  // scrollController: _recentController,
-                );
-              },
-            ),
-          ],
+          );
+          Future.delayed(Duration(seconds: 4), () {
+            userData.pressedBackOnce = false;
+          });
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: NestedScrollView(
+          controller: _scrollViewController,
+          // _currentIndex == 0 ? _popularController : _recentController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              MyAppBar(
+                forceElevated: innerBoxIsScrolled,
+                tabController: _tabController,
+              ),
+            ];
+          },
+          body: TabBarView(
+            controller: _tabController,
+            children: <Widget>[
+              FutureTabView<List<Content>>(
+                future: _popularContents,
+                onTapRefresh: _refreshPopular,
+                buildList: (List<Content> data) {
+                  // popularContents = [];
+                  // int index = 0;
+                  // for (Content content in data) {
+                  //   popularContents.add(content);
+                  //   _popularListKey.currentState.insertItem(index);
+                  //   index++;
+                  // }
+                  return new ContentListTabView(
+                    listKey: _popularListKey,
+                    contents: popularContents,
+                    onRefresh: _refreshPopular,
+                    onWidgetLoad: _onLoadPopular,
+                    onItemTap: _onItemTap,
+                    // scrollController: _popularController,
+                  );
+                },
+              ),
+              FutureTabView<List<Content>>(
+                future: _recentContents,
+                onTapRefresh: _refreshRecent,
+                buildList: (List<Content> data) {
+                  // recentContents = [];
+                  // int index = 0;
+                  // for (Content content in data) {
+                  //   recentContents.add(content);
+                  //   _recentListKey.currentState.insertItem(index);
+                  //   index++;
+                  // }
+                  return new ContentListTabView(
+                    listKey: _recentListKey,
+                    contents: data,
+                    onRefresh: _refreshRecent,
+                    onWidgetLoad: _onLoadRecent,
+                    onItemTap: _onItemTap,
+                    // scrollController: _recentController,
+                  );
+                },
+              ),
+            ],
+          ),
         ),
+        drawer: MyDrawer(),
       ),
-      drawer: MyDrawer(),
     );
   }
 }
