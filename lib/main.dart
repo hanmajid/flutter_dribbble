@@ -4,6 +4,7 @@ import 'package:flutter_dribbble/home.dart';
 import 'package:flutter_dribbble/models/content.dart';
 import 'package:flutter_dribbble/pages/about_page.dart';
 import 'package:flutter_dribbble/pages/content_detail_page.dart';
+import 'package:flutter_dribbble/pages/search_page.dart';
 import 'package:flutter_dribbble/pages/settings_page.dart';
 import 'package:flutter_dribbble/pages/whats_new_page.dart';
 import 'package:flutter_dribbble/routes/page_routes.dart';
@@ -35,6 +36,8 @@ class MyApp extends StatelessWidget {
               case '/content':
                 Content content = settings.arguments as Content;
                 return SlideRightRoute(widget: ContentDetailPage(content: content));
+              case '/search':
+                return SlideRightRoute(widget: SearchPage());
               case '/settings':
                 return SlideRightRoute(widget: SettingsPage());
               case '/about':

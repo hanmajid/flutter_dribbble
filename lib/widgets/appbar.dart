@@ -4,9 +4,10 @@ import 'package:flutter_dribbble/values/colors.dart';
 class MyAppBar extends StatelessWidget {
   final bool forceElevated;
   final TabController tabController;
+  final GestureTapCallback onPressedSearch;
 
   const MyAppBar(
-      {Key key, @required this.forceElevated, @required this.tabController})
+      {Key key, @required this.forceElevated, @required this.tabController, @required this.onPressedSearch})
       : super(key: key);
 
   @override
@@ -41,7 +42,7 @@ class MyAppBar extends StatelessWidget {
             Icons.search,
             color: lighterGrey,
           ),
-          onPressed: () {},
+          onPressed: onPressedSearch,
         )
       ],
       bottom: TabBar(

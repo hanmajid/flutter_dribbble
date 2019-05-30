@@ -153,7 +153,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             return <Widget>[
               MyAppBar(
                 forceElevated: innerBoxIsScrolled,
-                tabController: _tabController,
+                tabController: _tabController, 
+                onPressedSearch: () {
+                  Navigator.of(context).pushNamed('/search');
+                },
               ),
             ];
           },
