@@ -4,7 +4,7 @@ Dribbble clone using Flutter. It's still work in progress.
 
 ## About
 
-I made this for my study/exercise on Flutter. I only make the client-side app, the server side is a dummy server.
+I made this for my study/exercise on Flutter. I only make the client-side app, the server side is a dummy server. In this project, I focus on animations, state management using Provider, and local database.
 
 ## Screenshots
 
@@ -19,4 +19,7 @@ I made this for my study/exercise on Flutter. I only make the client-side app, t
 
 4. Change to night mode via Provider
 <img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image4.gif" height="300" alt="Change to night mode via Provider"/>
+
+5. Slide up and slide down search history item
+<img src="https://github.com/hanmajid/flutter_dribbble/blob/master/screenshots/image5.gif" height="300" alt="Slide up and slide down search history item"/>
 
