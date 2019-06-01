@@ -118,6 +118,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     Navigator.of(context).pushNamed('/content', arguments: content);
   }
 
+  void _handleTapHome() {
+    Navigator.of(context).pop();
+  }
+
+  void _handleTapExplore() {
+    Navigator.of(context).popAndPushNamed('/explore');
+  }
+
   @override
   Widget build(BuildContext context) {
     UserData userData = Provider.of<UserData>(context);
@@ -208,7 +216,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ],
           ),
         ),
-        drawer: MyDrawer(),
+        drawer: MyDrawer(
+          onTapExplore: _handleTapExplore, 
+          onTapHome: _handleTapHome,
+          ),
       ),
     );
   }

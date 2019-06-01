@@ -3,6 +3,17 @@ import 'package:flutter_dribbble/helpers/url_helpers.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 
 class MyDrawer extends StatelessWidget {
+  final GestureTapCallback onTapHome;
+  final GestureTapCallback onTapExplore;
+  final int activeIndex;
+
+  const MyDrawer({
+    Key key,
+    @required this.onTapHome,
+    @required this.onTapExplore,
+    this.activeIndex = 0,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -59,14 +70,14 @@ class MyDrawer extends StatelessWidget {
             DrawerListTile(
               icon: Icons.home,
               title: 'Home',
-              isActive: true,
-              onTap: () {},
+              isActive: activeIndex == 0,
+              onTap: onTapHome,
             ),
             DrawerListTile(
               icon: Icons.explore,
               title: 'Explore',
-              isActive: false,
-              onTap: () {},
+              isActive: activeIndex == 1,
+              onTap: onTapExplore,
             ),
             Divider(
               color: lightGrey,
@@ -109,7 +120,9 @@ class DrawerListTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: isActive ? Theme.of(context).primaryColor : Theme.of(context).iconTheme.color,
+        color: isActive
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).iconTheme.color,
       ),
       title: Text(
         title,
