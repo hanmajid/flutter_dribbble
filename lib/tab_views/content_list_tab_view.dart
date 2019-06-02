@@ -27,10 +27,19 @@ class ContentListTabView extends StatefulWidget {
   _ContentListTabViewState createState() => _ContentListTabViewState();
 }
 
+enum ViewMode {
+  smallWithInfos,
+  largeWithInfos,
+  smallWithoutInfos,
+  largeWithoutInfos,
+}
+
 class _ContentListTabViewState extends State<ContentListTabView>
     with
         AfterLayoutMixin<ContentListTabView>,
         AutomaticKeepAliveClientMixin<ContentListTabView> {
+  ViewMode viewMode = ViewMode.smallWithInfos;
+
   @override
   Widget build(BuildContext context) {
     // super.build(context);
@@ -50,9 +59,56 @@ class _ContentListTabViewState extends State<ContentListTabView>
             return Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.grid_on),
-                  onPressed: () {},
+                DropdownButton<ViewMode>(
+                  // icon: Icon(Icons.grid_on),
+                  value: viewMode,
+                  onChanged: (ViewMode newValue) {
+                    setState(() {
+                      viewMode = newValue;
+                    });
+                  },
+                  items: <DropdownMenuItem<ViewMode>>[
+                    DropdownMenuItem(
+                      value: ViewMode.smallWithInfos,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.crop_square),
+                          SizedBox(width: 20.0,),
+                          Text('Small with infos'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: ViewMode.largeWithInfos,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.crop_square),
+                          SizedBox(width: 20.0,),
+                          Text('Large with infos'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: ViewMode.smallWithoutInfos,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.crop_square),
+                          SizedBox(width: 20.0,),
+                          Text('Small without infos'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: ViewMode.largeWithoutInfos,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.crop_square),
+                          SizedBox(width: 20.0,),
+                          Text('Large without infos'),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             );
