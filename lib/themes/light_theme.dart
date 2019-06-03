@@ -56,4 +56,5 @@ ThemeData lightThemeData = ThemeData(
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: pink,
   ),
+  canvasColor: mediumDarkGrey,
 );
