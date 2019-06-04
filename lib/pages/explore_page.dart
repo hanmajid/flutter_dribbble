@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dribbble/models/content.dart';
+import 'package:flutter_dribbble/services/content_services.dart';
+import 'package:flutter_dribbble/tab_views/content_list_tab_view.dart';
+import 'package:flutter_dribbble/tab_views/future_tab_view.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 import 'package:flutter_dribbble/widgets/drawers.dart';
 
@@ -11,10 +15,16 @@ class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
   TabController tabController;
 
+  GlobalKey<AnimatedListState> _listKey = new GlobalKey<AnimatedListState>();
+  Future<List<Content>> _contents;
+  List<Content> contents = [];
+  List<Content> tempContents = [];
+
   @override
   void initState() {
     super.initState();
     tabController = new TabController(length: 3, vsync: this);
+    _refreshContents();
   }
 
   @override
@@ -34,11 +44,39 @@ class _ExplorePageState extends State<ExplorePage>
   Widget _getDropdown(String text) {
     return DropdownMenuItem(
       child: Container(
-          // width: 72.0,
-          child: Text(text),
-        ),
+        // width: 72.0,
+        child: Text(text),
+      ),
       value: text,
     );
+  }
+
+  Future<void> _refreshContents() {
+    setState(() {
+      tempContents = [];
+      contents = [];
+      _contents =
+          ContentService.getExplore().then((List<Content> newContents) {
+        tempContents = newContents;
+        return tempContents;
+      });
+    });
+    return _contents;
+  }
+
+  void _onItemTap(Content content) {
+    Navigator.of(context).pushNamed('/content', arguments: content);
+  }
+
+  _onLoadContents() {
+    setState(() {
+      int index = 1;
+      for (Content c in tempContents) {
+        contents.add(c);
+        _listKey.currentState.insertItem(index);
+        index++;
+      }
+    });
   }
 
   @override
@@ -172,8 +210,26 @@ class _ExplorePageState extends State<ExplorePage>
             ),
           ];
         },
-        body: Center(
-          child: Text('Explore'),
+        body: FutureTabView<List<Content>>(
+          future: _contents,
+          onTapRefresh: _refreshContents,
+          buildList: (List<Content> data) {
+            // popularContents = [];
+            // int index = 0;
+            // for (Content content in data) {
+            //   popularContents.add(content);
+            //   _popularListKey.currentState.insertItem(index);
+            //   index++;
+            // }
+            return new ContentListTabView(
+              listKey: _listKey,
+              contents: contents,
+              onRefresh: _refreshContents,
+              onWidgetLoad: _onLoadContents,
+              onItemTap: _onItemTap,
+              // scrollController: _popularController,
+            );
+          },
         ),
       ),
     );
