@@ -20,6 +20,10 @@ class _ExplorePageState extends State<ExplorePage>
   List<Content> contents = [];
   List<Content> tempContents = [];
 
+  String sortBy = 'Popular';
+  String types = 'Shots';
+  String time = 'Now';
+
   @override
   void initState() {
     super.initState();
@@ -123,8 +127,13 @@ class _ExplorePageState extends State<ExplorePage>
                           value: 'Most viewed',
                         ),
                       ],
-                      value: 'Popular',
-                      onChanged: (value) {},
+                      value: sortBy,
+                      onChanged: (value) {
+                        _refreshContents();
+                        setState(() {
+                         sortBy = value; 
+                        });
+                      },
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -166,8 +175,13 @@ class _ExplorePageState extends State<ExplorePage>
                           value: 'Team shots',
                         ),
                       ],
-                      value: 'Shots',
-                      onChanged: (value) {},
+                      value: types,
+                      onChanged: (value) {
+                        _refreshContents();
+                        setState(() {
+                         types = value; 
+                        });
+                      },
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -197,8 +211,13 @@ class _ExplorePageState extends State<ExplorePage>
                           value: 'All time',
                         ),
                       ],
-                      value: 'Now',
-                      onChanged: (value) {},
+                      value: time,
+                      onChanged: (value) {
+                        _refreshContents();
+                        setState(() {
+                         time = value; 
+                        });
+                      },
                       style: TextStyle(
                         color: Colors.white,
                       ),
