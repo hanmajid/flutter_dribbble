@@ -11,6 +11,32 @@ class ExplorePage extends StatefulWidget {
   _ExplorePageState createState() => _ExplorePageState();
 }
 
+enum ExploreSortBy {
+  popular,
+  mostCommented,
+  mostViewed,
+  mostRecent,
+}
+
+enum ExploreDisplayType {
+  shots,
+  animatedGifs,
+  videos,
+  withAttachments,
+  debuts,
+  playoffs,
+  rebounds,
+  teamShots,
+}
+
+enum ExploreDisplayTime {
+  now,
+  thisPastWeek,
+  thisPastMonth,
+  thisPastYear,
+  allTime,
+}
+
 class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
   TabController tabController;
@@ -20,9 +46,9 @@ class _ExplorePageState extends State<ExplorePage>
   List<Content> contents = [];
   List<Content> tempContents = [];
 
-  String sortBy = 'Popular';
-  String types = 'Shots';
-  String time = 'Now';
+  ExploreSortBy sortBy = ExploreSortBy.popular;
+  ExploreDisplayType types = ExploreDisplayType.shots;
+  ExploreDisplayTime time = ExploreDisplayTime.now;
 
   @override
   void initState() {
@@ -59,8 +85,7 @@ class _ExplorePageState extends State<ExplorePage>
     setState(() {
       tempContents = [];
       contents = [];
-      _contents =
-          ContentService.getExplore().then((List<Content> newContents) {
+      _contents = ContentService.getExplore().then((List<Content> newContents) {
         tempContents = newContents;
         return tempContents;
       });
@@ -112,26 +137,26 @@ class _ExplorePageState extends State<ExplorePage>
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(
                           child: Text('Popular'),
-                          value: 'Popular',
+                          value: ExploreSortBy.popular,
                         ),
                         DropdownMenuItem(
                           child: Text('Most commented'),
-                          value: 'Most commented',
+                          value: ExploreSortBy.mostCommented,
                         ),
                         DropdownMenuItem(
                           child: Text('Most recent'),
-                          value: 'Most recent',
+                          value: ExploreSortBy.mostRecent
                         ),
                         DropdownMenuItem(
                           child: Text('Most viewed'),
-                          value: 'Most viewed',
+                          value: ExploreSortBy.mostViewed,
                         ),
                       ],
                       value: sortBy,
                       onChanged: (value) {
                         _refreshContents();
                         setState(() {
-                         sortBy = value; 
+                          sortBy = value;
                         });
                       },
                       style: TextStyle(
@@ -144,42 +169,42 @@ class _ExplorePageState extends State<ExplorePage>
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(
                           child: Text('Shots'),
-                          value: 'Shots',
+                          value: ExploreDisplayType.shots,
                         ),
                         DropdownMenuItem(
                           child: Text('Animated GIFs'),
-                          value: 'Animated GIFs',
+                          value: ExploreDisplayType.animatedGifs,
                         ),
                         DropdownMenuItem(
                           child: Text('Videos'),
-                          value: 'Videos',
+                          value: ExploreDisplayType.videos
                         ),
                         DropdownMenuItem(
                           child: Text('With attachments'),
-                          value: 'With attachments',
+                          value: ExploreDisplayType.withAttachments,
                         ),
                         DropdownMenuItem(
                           child: Text('Debuts'),
-                          value: 'Debuts',
+                          value: ExploreDisplayType.debuts,
                         ),
                         DropdownMenuItem(
                           child: Text('Playoffs'),
-                          value: 'Playoffs',
+                          value: ExploreDisplayType.playoffs,
                         ),
                         DropdownMenuItem(
                           child: Text('Rebounds'),
-                          value: 'Rebounds',
+                          value: ExploreDisplayType.rebounds,
                         ),
                         DropdownMenuItem(
                           child: Text('Team shots'),
-                          value: 'Team shots',
+                          value: ExploreDisplayType.teamShots,
                         ),
                       ],
                       value: types,
                       onChanged: (value) {
                         _refreshContents();
                         setState(() {
-                         types = value; 
+                          types = value;
                         });
                       },
                       style: TextStyle(
@@ -192,30 +217,30 @@ class _ExplorePageState extends State<ExplorePage>
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(
                           child: Text('Now'),
-                          value: 'Now',
+                          value: ExploreDisplayTime.now,
                         ),
                         DropdownMenuItem(
                           child: Text('This past week'),
-                          value: 'This past week',
+                          value: ExploreDisplayTime.thisPastWeek,
                         ),
                         DropdownMenuItem(
                           child: Text('This past month'),
-                          value: 'This past month',
+                          value: ExploreDisplayTime.thisPastMonth,
                         ),
                         DropdownMenuItem(
                           child: Text('This past year'),
-                          value: 'This past year',
+                          value: ExploreDisplayTime.thisPastYear,
                         ),
                         DropdownMenuItem(
                           child: Text('All time'),
-                          value: 'All time',
+                          value: ExploreDisplayTime.allTime,
                         ),
                       ],
                       value: time,
                       onChanged: (value) {
                         _refreshContents();
                         setState(() {
-                         time = value; 
+                          time = value;
                         });
                       },
                       style: TextStyle(
