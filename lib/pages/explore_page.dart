@@ -127,128 +127,131 @@ class _ExplorePageState extends State<ExplorePage>
               title: Text('Explore'),
               bottom: PreferredSize(
                 preferredSize: Size(MediaQuery.of(context).size.width, 50),
-                child: TabBar(
-                  indicator: BoxDecoration(),
-                  isScrollable: true,
-                  controller: tabController,
-                  tabs: <Widget>[
-                    DropdownButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      items: <DropdownMenuItem>[
-                        DropdownMenuItem(
-                          child: Text('Popular'),
-                          value: ExploreSortBy.popular,
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: mediumDarkGrey,
+                  ),
+                  child: TabBar(
+                    indicator: BoxDecoration(),
+                    isScrollable: true,
+                    controller: tabController,
+                    tabs: <Widget>[
+                      DropdownButton(
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        items: <DropdownMenuItem>[
+                          DropdownMenuItem(
+                            child: Text('Popular'),
+                            value: ExploreSortBy.popular,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Most commented'),
+                            value: ExploreSortBy.mostCommented,
+                          ),
+                          DropdownMenuItem(
+                              child: Text('Most recent'),
+                              value: ExploreSortBy.mostRecent),
+                          DropdownMenuItem(
+                            child: Text('Most viewed'),
+                            value: ExploreSortBy.mostViewed,
+                          ),
+                        ],
+                        value: sortBy,
+                        onChanged: (value) {
+                          _refreshContents();
+                          setState(() {
+                            sortBy = value;
+                          });
+                        },
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        DropdownMenuItem(
-                          child: Text('Most commented'),
-                          value: ExploreSortBy.mostCommented,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Most recent'),
-                          value: ExploreSortBy.mostRecent
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Most viewed'),
-                          value: ExploreSortBy.mostViewed,
-                        ),
-                      ],
-                      value: sortBy,
-                      onChanged: (value) {
-                        _refreshContents();
-                        setState(() {
-                          sortBy = value;
-                        });
-                      },
-                      style: TextStyle(
-                        color: Colors.white,
+                        underline: SizedBox(),
                       ),
-                      underline: SizedBox(),
-                    ),
-                    DropdownButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      items: <DropdownMenuItem>[
-                        DropdownMenuItem(
-                          child: Text('Shots'),
-                          value: ExploreDisplayType.shots,
+                      DropdownButton(
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        items: <DropdownMenuItem>[
+                          DropdownMenuItem(
+                            child: Text('Shots'),
+                            value: ExploreDisplayType.shots,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Animated GIFs'),
+                            value: ExploreDisplayType.animatedGifs,
+                          ),
+                          DropdownMenuItem(
+                              child: Text('Videos'),
+                              value: ExploreDisplayType.videos),
+                          DropdownMenuItem(
+                            child: Text('With attachments'),
+                            value: ExploreDisplayType.withAttachments,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Debuts'),
+                            value: ExploreDisplayType.debuts,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Playoffs'),
+                            value: ExploreDisplayType.playoffs,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Rebounds'),
+                            value: ExploreDisplayType.rebounds,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Team shots'),
+                            value: ExploreDisplayType.teamShots,
+                          ),
+                        ],
+                        value: types,
+                        onChanged: (value) {
+                          _refreshContents();
+                          setState(() {
+                            types = value;
+                          });
+                        },
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        DropdownMenuItem(
-                          child: Text('Animated GIFs'),
-                          value: ExploreDisplayType.animatedGifs,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Videos'),
-                          value: ExploreDisplayType.videos
-                        ),
-                        DropdownMenuItem(
-                          child: Text('With attachments'),
-                          value: ExploreDisplayType.withAttachments,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Debuts'),
-                          value: ExploreDisplayType.debuts,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Playoffs'),
-                          value: ExploreDisplayType.playoffs,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Rebounds'),
-                          value: ExploreDisplayType.rebounds,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Team shots'),
-                          value: ExploreDisplayType.teamShots,
-                        ),
-                      ],
-                      value: types,
-                      onChanged: (value) {
-                        _refreshContents();
-                        setState(() {
-                          types = value;
-                        });
-                      },
-                      style: TextStyle(
-                        color: Colors.white,
+                        underline: SizedBox(),
                       ),
-                      underline: SizedBox(),
-                    ),
-                    DropdownButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      items: <DropdownMenuItem>[
-                        DropdownMenuItem(
-                          child: Text('Now'),
-                          value: ExploreDisplayTime.now,
+                      DropdownButton(
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        items: <DropdownMenuItem>[
+                          DropdownMenuItem(
+                            child: Text('Now'),
+                            value: ExploreDisplayTime.now,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('This past week'),
+                            value: ExploreDisplayTime.thisPastWeek,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('This past month'),
+                            value: ExploreDisplayTime.thisPastMonth,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('This past year'),
+                            value: ExploreDisplayTime.thisPastYear,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('All time'),
+                            value: ExploreDisplayTime.allTime,
+                          ),
+                        ],
+                        value: time,
+                        onChanged: (value) {
+                          _refreshContents();
+                          setState(() {
+                            time = value;
+                          });
+                        },
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        DropdownMenuItem(
-                          child: Text('This past week'),
-                          value: ExploreDisplayTime.thisPastWeek,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('This past month'),
-                          value: ExploreDisplayTime.thisPastMonth,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('This past year'),
-                          value: ExploreDisplayTime.thisPastYear,
-                        ),
-                        DropdownMenuItem(
-                          child: Text('All time'),
-                          value: ExploreDisplayTime.allTime,
-                        ),
-                      ],
-                      value: time,
-                      onChanged: (value) {
-                        _refreshContents();
-                        setState(() {
-                          time = value;
-                        });
-                      },
-                      style: TextStyle(
-                        color: Colors.white,
+                        underline: SizedBox(),
                       ),
-                      underline: SizedBox(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
