@@ -6,9 +6,12 @@ class MyAppBar extends StatelessWidget {
   final TabController tabController;
   final GestureTapCallback onPressedSearch;
 
-  const MyAppBar(
-      {Key key, @required this.forceElevated, @required this.tabController, @required this.onPressedSearch})
-      : super(key: key);
+  const MyAppBar({
+    Key? key,
+    required this.forceElevated,
+    required this.tabController,
+    required this.onPressedSearch,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class MyAppBar extends StatelessWidget {
         children: <Widget>[
           Text(
             'dribbbble',
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ],
       ),

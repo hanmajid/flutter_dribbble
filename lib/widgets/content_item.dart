@@ -6,7 +6,8 @@ class ContentItem extends StatefulWidget {
   final Content content;
   final GestureTapCallback onTap;
 
-  const ContentItem({Key key, this.content, this.onTap}) : super(key: key);
+  const ContentItem({Key? key, required this.content, required this.onTap})
+      : super(key: key);
 
   @override
   _ContentItemState createState() => _ContentItemState();
@@ -14,8 +15,8 @@ class ContentItem extends StatefulWidget {
 
 class _ContentItemState extends State<ContentItem>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
+  late AnimationController controller;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -66,11 +67,15 @@ class _ContentItemState extends State<ContentItem>
 
 class ContentItemButton extends StatelessWidget {
   final IconData icon;
-  final String text;
+  final String? text;
   final onTap;
 
-  const ContentItemButton({Key key, this.icon, this.text, this.onTap})
-      : super(key: key);
+  const ContentItemButton({
+    Key? key,
+    required this.icon,
+    this.text,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +100,7 @@ class ContentItemButton extends StatelessWidget {
               text == null
                   ? Container()
                   : Text(
-                      text,
+                      text!,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: lighterGrey,
@@ -114,19 +119,19 @@ class AnimatedContentItem extends AnimatedWidget {
   final Content content;
 
   AnimatedContentItem({
-    this.onTap,
-    this.content,
-    Key key,
-    Animation<double> animation,
+    required this.onTap,
+    required this.content,
+    required Animation<double> animation,
+    Key? key,
   }) : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
-    final Animation<double> animation = listenable;
+    // final Animation<double> animation = listenable;
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: animation.value,
+        // elevation: animation.value,
         shape: RoundedRectangleBorder(),
         margin: const EdgeInsets.only(
           bottom: 24.0,
@@ -160,11 +165,11 @@ class AnimatedContentItem extends AnimatedWidget {
                         children: <Widget>[
                           Text(
                             content.title,
-                            style: Theme.of(context).textTheme.subhead,
+                            style: Theme.of(context).textTheme.labelMedium,
                           ),
                           Text(
                             '${content.artistName}, ${content.createdAt.toString()}',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ],
                       ),

@@ -10,14 +10,14 @@ class Content {
   final int attachmentCount;
 
   Content({
-    this.id,
-    this.profilePicUrl,
-    this.title,
-    this.artistName,
-    this.createdAt,
-    this.loveCount,
-    this.commentCount,
-    this.viewCount,
-    this.attachmentCount,
+    required this.id,
+    required this.profilePicUrl,
+    required this.title,
+    required this.artistName,
+    required this.createdAt,
+    required this.loveCount,
+    required this.commentCount,
+    required this.viewCount,
+    required this.attachmentCount,
   });
 }

@@ -9,26 +9,24 @@ class WhatsNewPage extends StatefulWidget {
 
 class _WhatsNewPageState extends State<WhatsNewPage> {
   bool _showFab = false;
-  ScrollController scrollController;
+  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     scrollController = new ScrollController()
       ..addListener(() {
-        if(scrollController.offset >= 200) {
+        if (scrollController.offset >= 200) {
           setState(() {
-           _showFab = true; 
+            _showFab = true;
           });
-        }
-        else {
+        } else {
           setState(() {
-           _showFab = false; 
+            _showFab = false;
           });
         }
       });
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +148,7 @@ class _WhatsNewPageState extends State<WhatsNewPage> {
                     SizedBox(
                       height: 16.0,
                     ),
-                    FlatButton(
+                    TextButton(
                       child: Text(
                         'Contact us',
                         style: TextStyle(
@@ -172,13 +170,14 @@ class _WhatsNewPageState extends State<WhatsNewPage> {
           ),
         ),
       ),
-      floatingActionButton: _showFab ? 
-      FloatingActionButton(
-        child: Icon(Icons.close),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ) : null,
+      floatingActionButton: _showFab
+          ? FloatingActionButton(
+              child: Icon(Icons.close),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

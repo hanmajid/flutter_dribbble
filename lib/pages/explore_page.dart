@@ -39,10 +39,10 @@ enum ExploreDisplayTime {
 
 class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  late TabController tabController;
 
   GlobalKey<AnimatedListState> _listKey = new GlobalKey<AnimatedListState>();
-  Future<List<Content>> _contents;
+  late Future<List<Content>> _contents;
   List<Content> contents = [];
   List<Content> tempContents = [];
 
@@ -102,7 +102,7 @@ class _ExplorePageState extends State<ExplorePage>
       int index = 1;
       for (Content c in tempContents) {
         contents.add(c);
-        _listKey.currentState.insertItem(index);
+        _listKey.currentState?.insertItem(index);
         index++;
       }
     });
@@ -136,9 +136,9 @@ class _ExplorePageState extends State<ExplorePage>
                     isScrollable: true,
                     controller: tabController,
                     tabs: <Widget>[
-                      DropdownButton(
+                      DropdownButton<ExploreSortBy>(
                         icon: Icon(Icons.keyboard_arrow_down),
-                        items: <DropdownMenuItem>[
+                        items: <DropdownMenuItem<ExploreSortBy>>[
                           DropdownMenuItem(
                             child: Text('Popular'),
                             value: ExploreSortBy.popular,
@@ -157,6 +157,7 @@ class _ExplorePageState extends State<ExplorePage>
                         ],
                         value: sortBy,
                         onChanged: (value) {
+                          if (value == null) return;
                           _refreshContents();
                           setState(() {
                             sortBy = value;
@@ -167,9 +168,9 @@ class _ExplorePageState extends State<ExplorePage>
                         ),
                         underline: SizedBox(),
                       ),
-                      DropdownButton(
+                      DropdownButton<ExploreDisplayType>(
                         icon: Icon(Icons.keyboard_arrow_down),
-                        items: <DropdownMenuItem>[
+                        items: <DropdownMenuItem<ExploreDisplayType>>[
                           DropdownMenuItem(
                             child: Text('Shots'),
                             value: ExploreDisplayType.shots,
@@ -204,6 +205,7 @@ class _ExplorePageState extends State<ExplorePage>
                         ],
                         value: types,
                         onChanged: (value) {
+                          if (value == null) return;
                           _refreshContents();
                           setState(() {
                             types = value;
@@ -214,9 +216,9 @@ class _ExplorePageState extends State<ExplorePage>
                         ),
                         underline: SizedBox(),
                       ),
-                      DropdownButton(
+                      DropdownButton<ExploreDisplayTime>(
                         icon: Icon(Icons.keyboard_arrow_down),
-                        items: <DropdownMenuItem>[
+                        items: <DropdownMenuItem<ExploreDisplayTime>>[
                           DropdownMenuItem(
                             child: Text('Now'),
                             value: ExploreDisplayTime.now,
@@ -240,6 +242,7 @@ class _ExplorePageState extends State<ExplorePage>
                         ],
                         value: time,
                         onChanged: (value) {
+                          if (value == null) return;
                           _refreshContents();
                           setState(() {
                             time = value;

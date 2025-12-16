@@ -3,9 +3,10 @@ import 'package:flutter_dribbble/values/colors.dart';
 
 class SettingsCard extends StatelessWidget {
   final List<Widget> children;
-  final String title;
+  final String? title;
 
-  const SettingsCard({Key key, this.title, this.children}) : super(key: key);
+  const SettingsCard({Key? key, this.title, required this.children})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class SettingsCard extends StatelessWidget {
           padding: const EdgeInsets.only(
               right: 16.0, left: 16.0, bottom: 16.0, top: 16.0),
           child: Text(
-            title,
+            title!,
             style: TextStyle(
               color: pink,
               fontWeight: FontWeight.bold,
@@ -51,13 +52,13 @@ class SettingsSwitchListTile extends StatelessWidget {
   final bool isDarkMode;
 
   const SettingsSwitchListTile({
-    Key key,
-    this.title,
-    this.subtitle,
-    this.value,
+    required this.isDarkMode,
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    required this.value,
+    required this.isThreeLine,
     this.onChanged,
-    this.isThreeLine,
-    @required this.isDarkMode,
   }) : super(key: key);
 
   @override
@@ -80,13 +81,17 @@ class SettingsSwitchListTile extends StatelessWidget {
 
 class SettingsListTile extends StatelessWidget {
   final String title;
-  final String subtitle;
-  final IconData trailing;
+  final String? subtitle;
+  final IconData? trailing;
   final onTap;
 
-  const SettingsListTile(
-      {Key key, this.title, this.subtitle, this.onTap, this.trailing})
-      : super(key: key);
+  const SettingsListTile({
+    Key? key,
+    required this.title,
+    this.subtitle,
+    this.onTap,
+    this.trailing,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +101,7 @@ class SettingsListTile extends StatelessWidget {
       ),
       subtitle: subtitle != null
           ? Text(
-              subtitle,
+              subtitle!,
             )
           : null,
       trailing: trailing != null

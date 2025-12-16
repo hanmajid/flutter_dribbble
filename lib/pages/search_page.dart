@@ -8,19 +8,19 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage>
     with SingleTickerProviderStateMixin {
-  FocusNode focusNode;
-  TextEditingController searchController;
-  AnimationController animationController;
-  Animation<Offset> animation;
+  late FocusNode focusNode;
+  late TextEditingController searchController;
+  late AnimationController animationController;
+  late Animation<Offset> animation;
 
   @override
   void initState() {
     super.initState();
     searchController = new TextEditingController()
       ..addListener(() {
-        /// Rebuild UI every time user input text to 
+        /// Rebuild UI every time user input text to
         /// change the icon beside search bar.
-        setState((){});
+        setState(() {});
       });
     animationController = new AnimationController(
         duration: Duration(milliseconds: 250), vsync: this);
@@ -96,7 +96,9 @@ class _SearchPageState extends State<SearchPage>
                   shape: CircleBorder(),
                   onPressed: _handlePressedCancel,
                   child: Icon(
-                    searchController.text.isEmpty? Icons.keyboard_voice : Icons.cancel,
+                    searchController.text.isEmpty
+                        ? Icons.keyboard_voice
+                        : Icons.cancel,
                     size: 25.0,
                   ),
                 ),

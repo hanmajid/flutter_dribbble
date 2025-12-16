@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (BuildContext context) => UserData(),
+      create: (BuildContext context) => UserData(),
       child: Builder(builder: (context) {
         UserData userData = Provider.of<UserData>(context);
         return MaterialApp(
@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
                 });
               case '/content':
                 Content content = settings.arguments as Content;
-                return SlideRightRoute(widget: ContentDetailPage(content: content));
+                return SlideRightRoute(
+                    widget: ContentDetailPage(content: content));
               case '/search':
                 return SlideRightRoute(widget: SearchPage());
               case '/settings':

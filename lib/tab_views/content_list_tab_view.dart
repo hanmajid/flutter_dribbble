@@ -10,12 +10,12 @@ class ContentListTabView extends StatefulWidget {
   final onRefresh;
   final listKey;
   final onWidgetLoad;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
   final onItemTap;
 
   const ContentListTabView({
-    Key key,
-    this.contents,
+    Key? key,
+    required this.contents,
     this.onRefresh,
     this.listKey,
     this.onWidgetLoad,
@@ -54,7 +54,8 @@ class _ContentListTabViewState extends State<ContentListTabView>
         key: widget.listKey,
         // controller: widget.scrollController,
         initialItemCount: data.length,
-        itemBuilder: (BuildContext context, int index, Animation animation) {
+        itemBuilder:
+            (BuildContext context, int index, Animation<double> animation) {
           if (index == ContentListTabViewItems['viewDropdown']) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -62,7 +63,8 @@ class _ContentListTabViewState extends State<ContentListTabView>
                 DropdownButton<ViewMode>(
                   // icon: Icon(Icons.grid_on),
                   value: viewMode,
-                  onChanged: (ViewMode newValue) {
+                  onChanged: (newValue) {
+                    if (newValue == null) return;
                     setState(() {
                       viewMode = newValue;
                     });
@@ -73,7 +75,9 @@ class _ContentListTabViewState extends State<ContentListTabView>
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.crop_square),
-                          SizedBox(width: 20.0,),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text('Small with infos'),
                         ],
                       ),
@@ -83,7 +87,9 @@ class _ContentListTabViewState extends State<ContentListTabView>
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.crop_square),
-                          SizedBox(width: 20.0,),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text('Large with infos'),
                         ],
                       ),
@@ -93,7 +99,9 @@ class _ContentListTabViewState extends State<ContentListTabView>
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.crop_square),
-                          SizedBox(width: 20.0,),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text('Small without infos'),
                         ],
                       ),
@@ -103,7 +111,9 @@ class _ContentListTabViewState extends State<ContentListTabView>
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.crop_square),
-                          SizedBox(width: 20.0,),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text('Large without infos'),
                         ],
                       ),

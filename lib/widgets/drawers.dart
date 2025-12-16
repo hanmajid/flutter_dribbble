@@ -8,9 +8,9 @@ class MyDrawer extends StatelessWidget {
   final int activeIndex;
 
   const MyDrawer({
-    Key key,
-    @required this.onTapHome,
-    @required this.onTapExplore,
+    Key? key,
+    required this.onTapHome,
+    required this.onTapExplore,
     this.activeIndex = 0,
   }) : super(key: key);
 
@@ -48,14 +48,14 @@ class MyDrawer extends StatelessWidget {
                     ),
                     Text(
                       'Login',
-                      style: Theme.of(context).textTheme.title,
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     SizedBox(
                       height: 4.0,
                     ),
                     Text(
                       'Tap here to login',
-                      style: Theme.of(context).textTheme.subtitle,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(
                       height: 24.0,
@@ -111,9 +111,13 @@ class DrawerListTile extends StatelessWidget {
   final bool isActive;
   final onTap;
 
-  const DrawerListTile(
-      {Key key, this.icon, this.title, this.isActive, this.onTap})
-      : super(key: key);
+  const DrawerListTile({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.isActive,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -127,10 +131,10 @@ class DrawerListTile extends StatelessWidget {
       title: Text(
         title,
         style: isActive
-            ? Theme.of(context).textTheme.subhead.copyWith(
+            ? Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(context).primaryColor,
                 )
-            : Theme.of(context).primaryTextTheme.subhead,
+            : Theme.of(context).primaryTextTheme.bodyMedium,
       ),
       onTap: onTap,
     );

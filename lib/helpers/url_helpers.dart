@@ -1,5 +1,4 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:share/share.dart';
 
 class UrlHelpers {
   static void reportABug() async {
@@ -25,7 +24,7 @@ class UrlHelpers {
   static void shareApp() {
     const String message = 'You should give a try to Dribbbble for Android, '
         'it\'s freaking cool! http://play.google.com/store/apps/details?id=mathieumaree.rippple';
-    Share.share(message);
+    // TODO Share.share(message);
   }
 
   static void shop() {

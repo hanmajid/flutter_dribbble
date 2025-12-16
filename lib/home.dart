@@ -9,8 +9,11 @@ import 'package:flutter_dribbble/widgets/drawers.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({
+    Key? key,
+    this.title,
+  }) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -18,24 +21,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  ScrollController _scrollViewController;
-  TabController _tabController;
+  late ScrollController _scrollViewController;
+  late TabController _tabController;
 
   GlobalKey<AnimatedListState> _popularListKey =
       new GlobalKey<AnimatedListState>();
   GlobalKey<AnimatedListState> _recentListKey =
       new GlobalKey<AnimatedListState>();
 
-  Future<List<Content>> _popularContents;
-  Future<List<Content>> _recentContents;
+  late Future<List<Content>> _popularContents;
+  late Future<List<Content>> _recentContents;
 
   List<Content> tempPopularContents = [];
   List<Content> popularContents = [];
   List<Content> tempRecentContents = [];
   List<Content> recentContents = [];
 
-  ScrollController _popularController;
-  ScrollController _recentController;
+  late ScrollController _popularController;
+  late ScrollController _recentController;
 
   int _currentIndex = 0;
 
@@ -84,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       int index = 1;
       for (Content c in tempPopularContents) {
         popularContents.add(c);
-        _popularListKey.currentState.insertItem(index);
+        _popularListKey.currentState?.insertItem(index);
         index++;
       }
     });
@@ -95,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       int index = 1;
       for (Content c in tempRecentContents) {
         recentContents.add(c);
-        _recentListKey.currentState.insertItem(index);
+        _recentListKey.currentState?.insertItem(index);
         index++;
       }
     });
@@ -132,11 +135,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return WillPopScope(
       onWillPop: () async {
         if (userData.preventAccidentalExit) {
-          if(userData.pressedBackOnce) {
+          if (userData.pressedBackOnce) {
             return true;
           }
           userData.pressedBackOnce = true;
-          _scaffoldKey.currentState.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: GestureDetector(
                 behavior: HitTestBehavior.opaque,
@@ -161,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             return <Widget>[
               MyAppBar(
                 forceElevated: innerBoxIsScrolled,
-                tabController: _tabController, 
+                tabController: _tabController,
                 onPressedSearch: () {
                   Navigator.of(context).pushNamed('/search');
                 },
@@ -217,9 +220,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           ),
         ),
         drawer: MyDrawer(
-          onTapExplore: _handleTapExplore, 
+          onTapExplore: _handleTapExplore,
           onTapHome: _handleTapHome,
-          ),
+        ),
       ),
     );
   }

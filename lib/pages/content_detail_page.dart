@@ -6,7 +6,7 @@ import 'package:flutter_dribbble/widgets/content_item.dart';
 class ContentDetailPage extends StatelessWidget {
   final Content content;
 
-  const ContentDetailPage({Key key, this.content}) : super(key: key);
+  const ContentDetailPage({Key? key, required this.content}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,11 @@ class ContentDetailPage extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               content.title,
-                              style: Theme.of(context).primaryTextTheme.subhead,
+                              style: Theme.of(context).primaryTextTheme.bodyLarge,
                             ),
                             Text(
                               '${content.artistName}, ${content.createdAt.toString()}',
-                              style: Theme.of(context).primaryTextTheme.caption,
+                              style: Theme.of(context).primaryTextTheme.bodySmall,
                             ),
                           ],
                         ),

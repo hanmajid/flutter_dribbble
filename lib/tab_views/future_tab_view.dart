@@ -3,12 +3,16 @@ import 'package:flutter_dribbble/tab_views/no_connection_tab_view.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 
 class FutureTabView<T> extends StatelessWidget {
-
   final Future<T> future;
   final onTapRefresh;
   final buildList;
 
-  const FutureTabView({Key key, this.future, this.onTapRefresh, this.buildList}) : super(key: key);
+  const FutureTabView({
+    Key? key,
+    required this.future,
+    this.onTapRefresh,
+    this.buildList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,6 @@ class FutureTabView<T> extends StatelessWidget {
             }
             return buildList(snapshot.data);
         }
-        return null; // unreachable
       },
     );
   }

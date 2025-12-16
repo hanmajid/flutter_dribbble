@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 
 class UserData extends ChangeNotifier {
-  bool _isNightMode;
-  bool _dataSavingMode;
-  bool _gifsAutoplay;
-  bool _preventAccidentalExit;
-  bool _openWebInApp;
-
-  bool _pressedBackOnce;
+  late bool _isNightMode;
+  late bool _dataSavingMode;
+  late bool _gifsAutoplay;
+  late bool _preventAccidentalExit;
+  late bool _openWebInApp;
+  late bool _pressedBackOnce;
 
   UserData() {
     _isNightMode = false;

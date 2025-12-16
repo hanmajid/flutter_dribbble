@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dribbble/values/colors.dart';
 
 class NoConnectionTabView extends StatelessWidget {
-
   final onTap;
 
-  const NoConnectionTabView({Key key, this.onTap}) : super(key: key);
+  const NoConnectionTabView({Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

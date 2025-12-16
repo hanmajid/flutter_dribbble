@@ -15,29 +15,29 @@ ThemeData darkThemeData = ThemeData(
   primaryColor: pink,
   dividerColor: lightGrey,
   textTheme: TextTheme(
-    title: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-    ),
-    subtitle: TextStyle(
-      color: grey,
-    ),
-    subhead: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-    ),
-    caption: TextStyle(
-      color: lighterGrey,
-    ),
+    // title: TextStyle(
+    //   color: Colors.white,
+    //   fontWeight: FontWeight.bold,
+    // ),
+    // subtitle: TextStyle(
+    //   color: grey,
+    // ),
+    // subhead: TextStyle(
+    //   color: Colors.white,
+    //   fontWeight: FontWeight.bold,
+    // ),
+    // caption: TextStyle(
+    //   color: lighterGrey,
+    // ),
   ),
   primaryTextTheme: TextTheme(
-    subhead: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-    ),
-    caption: TextStyle(
-      color: lighterGrey,
-    ),
+    // subhead: TextStyle(
+    //   color: Colors.white,
+    //   fontWeight: FontWeight.bold,
+    // ),
+    // caption: TextStyle(
+    //   color: lighterGrey,
+    // ),
   ),
   appBarTheme: AppBarTheme(
     color: mediumDarkGrey,
@@ -52,7 +52,7 @@ ThemeData darkThemeData = ThemeData(
       ),
     ),
   ),
-  toggleableActiveColor: pink,
+  // toggleableActiveColor: pink,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: pink,
   ),
